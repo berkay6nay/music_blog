@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in post_list %}
+<div class = "post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a></h2>
+    <p>Band : {{post.band_name}}</p> </br>
+    <p><p>Album : {{post.album_name}}</p> </br></p>
+    <p>{{post.body}}</p> </br>
+    {{post.rating}}
+</div>
+
+{% endfor %}
+
+{% endblock content %}
