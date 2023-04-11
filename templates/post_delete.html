@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure to delete "{{ object }}"</p>
+    {{form.as_p}}
+    <input type="submit" value="Confirm">
+</form>
+<a href="{% url 'home' %}">I have changed my mind after much consideration</a>
+
+{% endblock content %}

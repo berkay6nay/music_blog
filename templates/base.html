@@ -4,13 +4,16 @@
     </head>
     <body>
        <header>
-        <h1><a href="{url 'home'}">Loud Music</a></h1>
+        <h1><a href="{% url 'home' %}">Loud Music</a></h1>
        </header>
        <div>
         {% block content %}
 
        
        {% endblock content %}
+        </div>
+        <div>
+            <a href="{% url 'post_new' %}">Create A Post</a>
         </div>
        
 
