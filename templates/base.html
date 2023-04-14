@@ -12,11 +12,20 @@
        
        {% endblock content %}
         </div>
+        
+       
+        {% if user.is_authenticated %}
         <div>
+            <p>Logged in as {{user.username}}</p>
+            <a href="{% url 'logout' %}">Log out</a>
             <a href="{% url 'post_new' %}">Create A Post</a>
         </div>
-       
-
+           
+            {% else %}
+                <p>Have an account?</p> 
+                <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
 
     </body>
 </html>
