@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render ,get_object_or_404
 from django.views.generic import ListView ,DetailView 
 from django.views.generic.edit import CreateView , UpdateView ,DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
-from .models import Post
+from .models import Post , Profile
 
 
 class BlogListView(ListView):
@@ -18,9 +18,10 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     template_name = "post_new.html"
     fields = ["title" ,"band_name" ,"album_name" ,"body" ,"rating"]
-    def form_valid(self, form):
-        if form.instance.author == self.request.user:
-            return super().form_valid(form)
+    
+    def form_valid(self,form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Post
@@ -39,5 +40,14 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         obj = self.get_object()
         return obj.author == self.request.user
 
-    
+class ProfileDetailView(DetailView):
+    model = Profile
+    template_name = "profile_page.html"
+
+    def get_context_data(self, *args, **kwargs):
+        users = Profile.objects.all()
+        context = super(ProfileDetailView , self).get_context_data()
+        page_user = get_object_or_404(Profile , id = self.kwargs["pk"])
+        context["page_user"] = page_user
+        return context
 # Create your views here.

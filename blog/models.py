@@ -13,4 +13,12 @@ class Post(models.Model):
         return self.title
     def get_absolute_url(self):
         return reverse("post_detail" , kwargs={"pk" : self.pk})
+    
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE  )
+    bio = models.TextField()
+    def __str__(self):
+        return str(self.user)
+    def get_absolute_url(self):
+        return reverse("profile_page" , kwargs={"pk" : self.user.id  })
 # Create your models here.

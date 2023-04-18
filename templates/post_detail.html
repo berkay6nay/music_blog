@@ -9,6 +9,8 @@
     <h2>Album : {{post.album_name}}</p3> </br>
     <p>{{post.body}}</p>
    <p>{{post.rating}} / 10</p>  
+
+   <a href="{% url 'profile_page' post.author.profile.id %}">Profile Page</a>
 </div> 
 {% if user.id == post.author.id %}
     <a href="{% url 'post_delete' post.pk %}">Delete This Post</a> </br>
