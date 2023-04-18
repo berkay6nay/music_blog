@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class= "post-entry">
     <h1>{{post.title}}</p1> </br>
+    <h2>Author : {{post.author}}</h2>
     <h2>Band : {{post.band_name}}</p2> </br>
     <h2>Album : {{post.album_name}}</p3> </br>
     <p>{{post.body}}</p>
    <p>{{post.rating}} / 10</p>  
 </div> 
+{% if user.id == post.author.id %}
+    <a href="{% url 'post_delete' post.pk %}">Delete This Post</a> </br>
+    <a href="{% url 'post_edit' post.pk %}">Update This Post</a>
+    {% endif %}
 
-<a href="{% url 'post_delete' post.pk %}">Delete This Post</a>
 
 
 {% endblock content %}

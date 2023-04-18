@@ -5,7 +5,20 @@
     <body>
        <header>
         <h1><a href="{% url 'home' %}">Loud Music</a></h1>
-       </header>
+        </header>
+        {% if user.is_authenticated %}
+        <div class="topnav">
+            <p>Logged in as {{user.username}}</p>
+            <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'post_new' %}">Create A Post</a>
+            {% else %}
+                <p>Have an account?</p> 
+                <a href="{% url 'login' %}">Log in</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+        </div>
+           
+            
        <div>
         {% block content %}
 
@@ -14,18 +27,7 @@
         </div>
         
        
-        {% if user.is_authenticated %}
-        <div>
-            <p>Logged in as {{user.username}}</p>
-            <a href="{% url 'logout' %}">Log out</a>
-            <a href="{% url 'post_new' %}">Create A Post</a>
-        </div>
-           
-            {% else %}
-                <p>Have an account?</p> 
-                <a href="{% url 'login' %}">Log in</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
-                {% endif %}
+       
 
     </body>
 </html>
