@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView , UpdateView ,DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from .models import Post , Profile
-
+from django.contrib import messages
 
 class BlogListView(ListView):
     model = Post
@@ -56,4 +56,6 @@ class EditProfilePageView(UpdateView):
     template_name = "registration/edit_profile_page.html"
     fields = ["bio" , "profile_pic"]
     success_url = reverse_lazy("home")
+
+    
 # Create your views here.

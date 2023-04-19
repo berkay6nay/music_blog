@@ -6,10 +6,10 @@
 {% if user.id == profile.user.id %}
 
 <h1>Edit Your Profile</h1>
-<form action = "" type = "post" enctype="multipart/form-data">
-    {%csrf_token%}
+<form action = "" method = "POST" enctype="multipart/form-data">
+    {% csrf_token %}
     {{form.as_p}}
-   <button type="submit" >Update Profile</button>
+    <input type="submit" value="Update Profile">
 </form>
     
 
