@@ -17,8 +17,9 @@ class Post(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE  )
     bio = models.TextField()
+    profile_pic = models.ImageField(null=True , blank= True , upload_to="images/profile_pics")
     def __str__(self):
         return str(self.user)
     def get_absolute_url(self):
-        return reverse("profile_page" , kwargs={"pk" : self.user.id  })
+        return reverse("profile_page" , kwargs={"pk" : self.pk})
 # Create your models here.
