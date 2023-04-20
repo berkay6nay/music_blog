@@ -19,32 +19,9 @@ crossorigin="anonymous">
 
     </head>
     <body>
-    <!--   <header>
-        <h1><a href="{% url 'home' %}">Loud Music</a></h1>
-        </header>
-        {% if user.is_authenticated %}
-        <div class="topnav">
-            <p>Logged in as {{user.username}}</p>
-            <a href="{% url 'logout' %}">Log out</a> </div> </body> </br>
-            <a href="{% url 'post_new' %}">Create A Post</a> </br>
-            {% if user.profile %}
-                <a href="{% url 'profile_page' user.profile.id %}">Profile</a> </br>
-                <a href="{% url 'edit_profile_page' user.profile.id %}">Edit Your Profile</a>
-                {% else %}
-                    <a href="{% url 'create_profile' %}">Create Your Profile</a>
-                    {% endif %}
-            {% else %}
-                <p>Have an account?</p> 
-                <a href="{% url 'login' %}">Log in</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
-                {% endif %}
-        </div>
-           -->
             
        
-        
- 
-        <nav class="navbar navbar-light bg-light">
+       <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="{% url 'home' %}">Loud Music</a>       
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -96,14 +73,5 @@ crossorigin="anonymous">
            {% endblock content %}
             </div>
 
-
-
-
-
-
-
-
-       
-
-    </body>
+</body>
 </html>
