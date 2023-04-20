@@ -1,9 +1,46 @@
+
+
+
+
+
 {% extends "base.html" %}
 
 {% block content %}
 
 {% for post in post_list %}
-<div class = "post-entry">
+
+<div class="card">
+    <div class="card-header">
+        
+        
+        <span class="font-weight-bold">{{post.title}}</span> &middot;
+
+        {% if post.author.profile %}
+           <span> by <a href="{% url 'profile_page' post.author.profile.id %}" >{{post.author}}</a></span> 
+    
+            {% else %}
+                <span class="text-muted">by {{ post.author }}</span>
+
+                {% endif %}
+
+                </div>
+<div class="card-body">
+    Band : {{post.band_name}}
+    </div>
+    <div class="card-body">
+    Album : {{post.album_name}}
+    </div>
+        <div class="card-footer text-center text-muted">
+            <a href="{% url 'post_detail' post.pk %}">Read the post</a> 
+            </div>
+</div>
+<br/>
+{% endfor %}
+
+
+{% endblock content %}
+
+<!--   <div class = "post-entry">
     
     <h2>{{post.title}}</h2>
     <p>Author : {{post.author}}</p>
@@ -13,6 +50,4 @@
     <h2><a href="{% url 'post_detail' post.pk %}">Read the post</a></h2>
 </div>
 
-{% endfor %}
-
-{% endblock content %}
+ -->

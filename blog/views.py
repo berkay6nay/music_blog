@@ -10,6 +10,7 @@ class BlogListView(ListView):
     model = Post
     template_name = "home.html"
 
+
 class BlogDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
@@ -48,8 +49,13 @@ class ProfileDetailView(DetailView):
         
         context = super(ProfileDetailView , self).get_context_data()
         page_user = get_object_or_404(Profile , id = self.kwargs["pk"])
+        user = self.object.user
+        posts = Post.objects.filter(author=user)
         context["page_user"] = page_user
+        context['posts'] = posts
         return context
+    
+    
     
 class EditProfilePageView(UpdateView):
     model = Profile
@@ -67,4 +73,5 @@ class CreateProfileView(CreateView):
     success_url  =reverse_lazy("home")
 
     
+
 # Create your views here.
