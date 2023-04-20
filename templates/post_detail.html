@@ -26,8 +26,8 @@
                 </div>
               </div>
               <h4>{{ post.band_name }} - {{ post.album_name }}</h4>
-              <p>{{ post.body }}</p>
-              <p>Rating: {{ post.rating }}</p>
+              <p>{{ post.body|safe }}</p>
+              <p>Rating: {{ post.rating }} / 10</p>
               {% if user.id == post.author.id %}
                 <p><a href="{% url 'post_delete' post.pk %}">Delete This Post</a> | <a href="{% url 'post_edit' post.pk %}">Update This Post</a> </p>
                     

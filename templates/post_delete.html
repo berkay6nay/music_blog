@@ -1,15 +1,18 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure to delete "{{ object }}"</p>
-    {{form.as_p}}
-    <input type="submit" value="Confirm">
-</form>
-<a href="{% url 'home' %}">I have changed my mind after much consideration</a>
+<div class="container">
+    <div class="d-flex justify-content-center" >
+      <form method="post" >
+        <p>Are you sure to delete {{object}}</p>
+        {{ form|crispy}}
+        <button type="submit" class="btn btn-primary">Confirm</button>
 
+        <button class="btn btn-danger" type="button"><a href="{% url 'home' %}">Go To Home</a></button>
+      </form>
+    </div>
+  </div>
 
 {% endblock content %}
